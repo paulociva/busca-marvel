@@ -1,0 +1,30 @@
+<ng-container *ngIf="($charactersResponse | async) as charactersResponse; else noData">
+
+  <app-search fxFlex="0 0 auto" fxLayout="column" (searchText)="onSearchTextChange($event)"></app-search>
+  <div fxFlex="1 1 0%" fxLayout="column" class="simple-table">
+    <div fxFlex="initial" fxLayout="row" fxLayoutGap="10px" class="header">
+      <span fxFlex="calc(25% - 10px)" fxFlex.lt-md="calc(40% - 10px)">Personagem</span>
+      <span fxFlex="calc(75% - 10px)" fxFlex.lt-md="calc(60% - 10px)" fxHide.lt-sm>Descrição</span>
+    </div>
+    <div fxFlex="grow" class="body">
+      <div fxLayout="row wrap" fxLayoutGap="10px" class="character" *ngFor="let character of charactersResponse.data"
+           (click)="toggleMedia(character)">
+        <div fxFlex="calc(25% - 10px)" fxFlex.lt-md="calc(40% - 10px)" fxLayout="row" fxLayoutAlign="init center">
+          <img alt="Foto do personagem"
+               src="{{character.attributes.image ? character.attributes.image.original : 'assets/character.svg'}}">
+          {{character.attributes.name}}
+        </div>
+        <div fxFlex="calc(75% - 10px)" fxFlex.lt-md="calc(60% - 10px)" fxHide.lt-sm class="description"
+             [innerHTML]="character.attributes.description"></div>
+        <app-medias fxFlex="calc(100% - 10px)" fxLayoutAlign="center center"
+                    [character]="character" *ngIf="(openedMedias | async).includes(character.id)"></app-medias>
+      </div>
+    </div>
+  </div>
+  <app-pagination fxFlex="0 0 auto" [page]="page.value" [count]="charactersResponse.meta.count" [perPage]="10"
+                  (goToPage)="onPageChange($event)"></app-pagination>
+</ng-container>
+<ng-template #noData>
+  <app-loading fxFlex="grow" fxLayoutAlign="center center"></app-loading>
+</ng-template>
+

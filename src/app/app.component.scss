@@ -1,0 +1,27 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 100%;
+
+  app-header {
+    margin: 20px 42px 0 42px;
+    @media screen and (max-width: 599px) {
+      margin: 12px 42px 0 42px;
+    }
+  }
+
+  app-characters {
+    margin: 0 42px;
+    overflow: hidden;
+
+    @media screen and (max-width: 599px) {
+      margin: 0;
+    }
+  }
+
+  .footer {
+    height: 12px;
+    background: #D42026;
+  }
+}
+

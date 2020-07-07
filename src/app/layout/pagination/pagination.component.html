@@ -1,0 +1,6 @@
+<div fxFlex="grow" fxLayout="row" fxLayoutAlign="center center" class="paginator">
+  <a class="arrow arrow-left" (click)="onPage(page - 1)" [ngClass]="{'deactivated': page === 1}"></a>
+  <a fxFlex="initial" fxLayoutAlign="center center" class="page-button" *ngFor="let pageNum of getPages()"
+     (click)="onPage(pageNum)" [ngClass]="{'active': pageNum === page}"> {{ pageNum }} </a>
+  <a class="arrow arrow-right" (click)="onPage(page + 1)" [ngClass]="{'deactivated': perPage * page >= count}"></a>
+</div>

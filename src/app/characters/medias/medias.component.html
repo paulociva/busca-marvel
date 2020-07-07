@@ -1,0 +1,24 @@
+<div class="medias" *ngIf=" $medias | async as medias; else isLoading">
+  <div fxFlex fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="20px">
+    <div>
+      <span>Animes</span>
+      <div class="media" fxLayoutAlign="init center" *ngFor="let media of medias | arrayFilterByValue:'anime'">
+        <img alt="Media poster"
+             src="{{media.attributes.posterImage?.tiny ? media.attributes.posterImage.tiny : 'assets/no-photo.svg'}}">
+        {{media.attributes.canonicalTitle}}
+      </div>
+    </div>
+
+    <div>
+      <span>Mangás</span>
+      <div class="media" fxLayoutAlign="init center" *ngFor="let media of medias | arrayFilterByValue:'manga'">
+        <img alt="Media poster"
+             src="{{media.attributes.posterImage?.tiny ? media.attributes.posterImage.tiny : 'assets/no-photo.svg'}}">
+        {{media.attributes.canonicalTitle}}
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #isLoading>
+  <app-loading fxFlex="grow" fxLayoutAlign="center center"></app-loading>
+</ng-template>

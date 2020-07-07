@@ -1,0 +1,47 @@
+.simple-table {
+  font-size: 21px;
+  overflow: hidden;
+
+  .header {
+    span {
+      text-align: left;
+      font-size: 16px;
+      font-weight: 400;
+      font-style: normal;
+      padding: 10px;
+      color: white;
+      background: #D42026;
+    }
+  }
+
+  .body {
+    overflow: auto;
+
+    .character {
+      padding: 20px;
+      border-bottom: 1px solid #D42026;
+      cursor: pointer;
+
+      .description {
+        height: 71px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+      }
+
+      &:hover {
+        background: #fbe9ea;
+      }
+    }
+  }
+
+}
+
+img {
+  height: 58px;
+  width: 58px;
+  border-radius: 50%;
+  margin-right: 25px;
+}
